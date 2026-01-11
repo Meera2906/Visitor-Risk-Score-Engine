@@ -22,8 +22,8 @@ public class OpenApiConfig {
                 .bearerFormat("JWT");
 
         Server server = new Server()
-                .url("http://localhost:8080")
-                .description("Local Server");
+                .url("https://visitor-risk-score-engine-project.onrender.com")
+                .description("Render Deployment");
 
         return new OpenAPI()
                 .addSecurityItem(
