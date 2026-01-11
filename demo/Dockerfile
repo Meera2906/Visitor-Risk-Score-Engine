@@ -1,24 +1,14 @@
-FROM eclipse-temurin:17-jdk-alpine
+# Start from a lightweight OpenJDK image
+FROM eclipse-temurin:17-jdk-jammy
 
+# Set working directory
 WORKDIR /app
 
-# Copy Maven wrapper and config
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
+# Copy project jar (after Maven build)
+COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
 
-# FIX: make mvnw executable
-RUN chmod +x mvnw
-
-# Download dependencies
-RUN ./mvnw dependency:go-offline
-
-# Copy source code
-COPY src src
-
-# Build the app
-RUN ./mvnw package -DskipTests
-
+# Expose port
 EXPOSE 8080
 
-CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
+# Run the jar
+ENTRYPOINT ["java","-jar","app.jar"]
