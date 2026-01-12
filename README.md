@@ -207,4 +207,3 @@ This project demonstrates:
 Aspiring Software Engineer | Backend Developer
 📍 Java • Spring Boot • Security • REST APIs
 
-```
