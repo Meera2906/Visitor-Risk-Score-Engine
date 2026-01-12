@@ -1,74 +1,91 @@
 # 🛡️ Visitor Risk Scoring Engine
 
-A **Spring Boot–based backend system** that evaluates visitor risk using configurable rules, secure authentication, and role-based authorization.
+A **production-ready Spring Boot backend system** for evaluating visitor risk using configurable rules, secure authentication, and role-based authorization.
+
+---
+
+## 🌐 Live Deployment
+
+The application is deployed on **Render** and backed by **PostgreSQL**.
+
+🔗 **Base URL**: https://visitor-risk-score-engine-project.onrender.com
+🔗 **Swagger UI**: https://visitor-risk-score-engine-project.onrender.com/swagger-ui/index.html
 
 ---
 
 ## 📌 Overview
 
-The **Visitor Risk Scoring Engine** is designed to help organizations **assess and manage visitor risk** in a structured and automated way.
+The **Visitor Risk Scoring Engine** helps organizations **assess and manage visitor risk in a structured, rule-driven manner**.
 
-Instead of relying on manual judgment, the system uses **admin-defined risk rules** and **visitor activity logs** to calculate a cumulative risk score. Access to features is controlled using **JWT authentication and role-based authorization**.
+Instead of relying on subjective judgment, the system evaluates visitors based on:
+- **Admin-defined risk rules**
+- **Recorded visitor activity and visit logs**
+
+Each visitor is assigned a **cumulative risk score**, enabling informed decisions and consistent enforcement of security policies.
+
+The system uses **JWT-based authentication** and **role-based authorization** to ensure secure access to critical operations.
 
 ---
 
 ## 🎯 Key Features
 
-* 🔐 **JWT-based Authentication & Authorization**
-* 👥 **Role-Based Access Control**
-
-  * **ADMIN**: Create and manage risk rules
-  * **STAFF**: Add visitors and record visit logs
-* 📊 **Rule-driven Risk Scoring Engine**
-* 🧩 **Clean Layered Architecture**
-* 🛠️ **RESTful APIs**
-* 🗄️ **Database-backed persistence using JPA**
+- 🔐 **JWT-based Authentication & Authorization**
+- 👥 **Role-Based Access Control**
+  - **ADMIN**: Create and manage risk rules
+  - **STAFF**: Register visitors and record visit logs
+- 📊 **Rule-driven Risk Scoring Engine**
+- 🧩 **Clean Layered Architecture**
+- 🛠️ **RESTful APIs**
+- 🗄️ **PostgreSQL-backed persistence using JPA & Hibernate**
+- 📖 **Swagger / OpenAPI documentation**
 
 ---
 
 ## 🧑‍💻 Tech Stack
 
-* **Java 17**
-* **Spring Boot**
-* **Spring Security**
-* **JWT (JSON Web Tokens)**
-* **Spring Data JPA**
-* **Hibernate**
-* **H2 / MySQL** (configurable)
-* **Maven**
-* **Swagger / OpenAPI**
+- **Java 17**
+- **Spring Boot**
+- **Spring Security**
+- **JWT (JSON Web Tokens)**
+- **Spring Data JPA**
+- **Hibernate**
+- **PostgreSQL**
+- **Maven**
+- **Swagger / OpenAPI**
+- **Render (Deployment)**
 
 ---
 
 ## 🏗️ Architecture
 
-The project follows a **layered architecture**:
+The project follows a **clean layered architecture**:
 
 ```
+
 Controller  →  Service  →  Repository  →  Database
-                  ↓
-              Security (JWT, Roles)
-```
+↓
+Security (JWT, Roles)
 
-### Layers:
+````
 
-* **Controller Layer** – Handles HTTP requests
-* **Service Layer** – Business logic & validations
-* **Repository Layer** – Database operations
-* **Security Layer** – JWT validation & authorization
+### Layers
+
+- **Controller Layer** – Handles HTTP requests and responses  
+- **Service Layer** – Business logic and validations  
+- **Repository Layer** – Database access using JPA  
+- **Security Layer** – JWT validation and role-based authorization  
 
 ---
 
 ## 🔐 Security Design
 
-* Users authenticate via login to receive a **JWT token**
-* Token contains:
-
-  * User email
-  * User ID
-  * Roles (ADMIN / STAFF)
-* A custom **JWT Authentication Filter** validates the token for each request
-* Access is restricted using **@PreAuthorize** annotations
+- Users authenticate via login to receive a **JWT token**
+- The token contains:
+  - User ID
+  - Email
+  - Assigned roles (ADMIN / STAFF)
+- A custom **JWT Authentication Filter** validates the token on every request
+- Access control is enforced using **`@PreAuthorize` annotations**
 
 Example:
 
@@ -76,25 +93,25 @@ Example:
 @PreAuthorize("hasRole('ADMIN')")
 @PostMapping("/risk-rules")
 public RiskRule createRule(...) { }
-```
+````
 
 ---
 
 ## 👤 Roles & Permissions
 
-| Role  | Permissions                         |
-| ----- | ----------------------------------- |
-| ADMIN | Create, update, delete risk rules   |
-| STAFF | Add visitor profiles and visit logs |
-| BOTH  | View permitted resources            |
+| Role  | Permissions                           |
+| ----- | ------------------------------------- |
+| ADMIN | Create, update, and delete risk rules |
+| STAFF | Add visitor profiles and visit logs   |
+| BOTH  | View permitted resources              |
 
 ---
 
-## 📂 Main Modules
+## 📂 Core Modules
 
 * **Authentication**
 
-  * Login & token generation
+  * Login and JWT token generation
 * **Visitor Management**
 
   * Create visitor profiles
@@ -104,17 +121,17 @@ public RiskRule createRule(...) { }
   * Define thresholds and score impact
 * **Risk Evaluation**
 
-  * Calculate total risk score per visitor
+  * Calculate cumulative risk score per visitor
 
 ---
 
-## ▶️ Running the Project
+## ▶️ Running the Project Locally
 
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/your-username/visitor-risk-scoring-engine.git
-cd visitor-risk-scoring-engine
+git clone https://github.com/Meera2906/Visitor-Risk-Score-Engine.git
+cd Visitor-Risk-Score-Engine
 ```
 
 ### 2️⃣ Configure application properties
@@ -122,6 +139,10 @@ cd visitor-risk-scoring-engine
 Update `application.properties`:
 
 ```properties
+spring.datasource.url=jdbc:postgresql://...
+spring.datasource.username=...
+spring.datasource.password=...
+
 jwt.secret=your_secret_key
 jwt.expiration=86400000
 ```
@@ -132,7 +153,7 @@ jwt.expiration=86400000
 mvn spring-boot:run
 ```
 
-The application will start on:
+Application runs at:
 
 ```
 http://localhost:8080
@@ -153,7 +174,7 @@ mvn test
 Swagger UI is available at:
 
 ```
-http://localhost:8080/swagger-ui.html
+/swagger-ui.html
 ```
 
 ---
@@ -161,9 +182,10 @@ http://localhost:8080/swagger-ui.html
 ## 🚀 Future Enhancements
 
 * Real-time alerts for high-risk visitors
-* Analytics dashboard
-* Integration with external access-control systems
+* Analytics and reporting dashboard
 * Role-based audit logging
+* Integration with external access-control systems
+* Docker support
 
 ---
 
@@ -171,10 +193,11 @@ http://localhost:8080/swagger-ui.html
 
 This project demonstrates:
 
-* Secure API design using JWT
+* Secure REST API design using JWT
 * Role-based authorization with Spring Security
-* Clean architecture principles
-* Real-world backend problem solving
+* PostgreSQL integration with JPA/Hibernate
+* Clean backend architecture
+* Cloud deployment using Render
 
 ---
 
@@ -184,4 +207,4 @@ This project demonstrates:
 Aspiring Software Engineer | Backend Developer
 📍 Java • Spring Boot • Security • REST APIs
 
----
+```
