@@ -125,6 +125,19 @@ public RiskRule createRule(...) { }
 
 ---
 
+## 📸 Screenshots
+
+### Render Deployment
+![Render Deployment](screenshots/render-deployment.png)
+
+### PostgreSQL Database Tables
+![Database Tables](screenshots/db-tables.png)
+
+### Swagger API Documentation
+![Swagger UI](screenshots/swagger-ui.png)
+
+---
+
 ## ▶️ Running the Project Locally
 
 ### 1️⃣ Clone the repository
