@@ -22,8 +22,8 @@ public class OpenApiConfig {
                 .bearerFormat("JWT");
 
         Server server = new Server()
-                .url("https://visitor-risk-score-engine-project.onrender.com")
-                .description("Render Deployment");
+                .url("https://visitor-risk-score-engine-production.up.railway.app")
+                .description("Railway Deployment");
 
         return new OpenAPI()
                 .addSecurityItem(
