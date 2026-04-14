@@ -8,8 +8,8 @@ A **production-ready Spring Boot backend system** for evaluating visitor risk us
 
 The application is deployed on **Render** and backed by **PostgreSQL**.
 
-🔗 **Base URL**: https://visitor-risk-score-engine-project.onrender.com
-🔗 **Swagger UI**: https://visitor-risk-score-engine-project.onrender.com/swagger-ui/index.html
+🔗 **Base URL**: https://visitor-risk-score-engine-production.up.railway.app
+🔗 **Swagger UI**: https://visitor-risk-score-engine-production.up.railway.app/swagger-ui/index.html
 
 ---
 
@@ -127,8 +127,8 @@ public RiskRule createRule(...) { }
 
 ## 📸 Screenshots
 
-### Render Deployment
-![Render Deployment](screenshots/render-deployment.png)
+### Railway Deployment
+![Railway Deployment](screenshots/render-deployment.png)
 
 ### PostgreSQL Database Tables
 ![Database Tables](screenshots/db-tables.png)
