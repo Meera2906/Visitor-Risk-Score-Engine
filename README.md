@@ -128,7 +128,7 @@ public RiskRule createRule(...) { }
 ## 📸 Screenshots
 
 ### Railway Deployment
-![Railway Deployment](screenshots/render-deployment.png)
+![Railway Deployment](screenshots/railway-deployment.png)
 
 ### PostgreSQL Database Tables
 ![Database Tables](screenshots/db-tables.png)
