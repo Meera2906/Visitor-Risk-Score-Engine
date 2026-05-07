@@ -217,6 +217,6 @@ This project demonstrates:
 ## 👩‍💻 Author
 
 **Meera Fareena S**
-Aspiring Software Engineer | Full-Stack Developer
+Aspiring Software Engineer | Backend Developer
 📍 Java • Spring Boot • Security • REST APIs
 
